@@ -1,0 +1,251 @@
+<!DOCTYPE html>
+<html lang="en">
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Quiz App</title>
+        <link rel="stylesheet" href="styles.css">
+        <style>
+            body {
+    font-family: Arial, sans-serif;
+}
+
+.quiz-container {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+}
+
+.options-container {
+    display:flex;
+    flex-direction: column;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+button {
+    background-color: #007BFF;
+    color: white;
+    border: none;
+    padding: 10px 20px;
+    cursor: pointer;
+    margin-top: 1rem;
+}
+
+button:hover {
+    background-color: #0056b3;
+}
+#question
+{
+    font-size: 25px;
+}
+
+        </style>
+    </head>
+    <body>
+        <div class="quiz-container">
+            <h1>Quiz App</h1>
+            <p id="question">Question goes here</p>
+            <div id="options" class="options-container">
+                <!-- Options go here -->
+            </div>
+            <button id="next-button">Next</button>
+            <p id="score">Score: 0</p>
+        </div>
+        <script>
+            
+const quizData = [
+            {
+                question: "What does HTML stand for?",
+                options: ["Hyper Transfer Markup Language", "Hyper Text Markup Language", "Highly Typed Machine Learning", "Hyperlink and Text Markup Language"],
+                correctAnswer: "Hyper Text Markup Language"
+            },
+            {
+                question: "Which programming language is often used for web development?",
+                options: ["Java", "Python", "C++", "JavaScript"],
+                correctAnswer: "JavaScript"
+            },
+            {
+                question: "What does CSS stand for?",
+                options: ["Computer Style Sheets", "Cascading Style Sheets", "Creative Style Sheets", "Colorful Style Sheets"],
+                correctAnswer: "Cascading Style Sheets"
+            },
+            {
+                question: "Which company is known for its search engine?",
+                options: ["Apple", "Microsoft", "Google", "Facebook"],
+                correctAnswer: "Google"
+            },
+            {
+                question: "What does CPU stand for?",
+                options: ["Central Processing Unit", "Computer Personal Unit", "Central Process Unit", "Central Processor Unit"],
+                correctAnswer: "Central Processing Unit"
+            },
+            {
+                question: "Which programming language is known as the 'language of the web'?",
+                options: ["Java", "Python", "PHP", "JavaScript"],
+                correctAnswer: "JavaScript"
+            },
+            {
+                question: "What is the full form of URL?",
+                options: ["Uniform Resource Locator", "Universal Resource Locator", "Uniform Remote Locator", "Unified Resource Locator"],
+                correctAnswer: "Uniform Resource Locator"
+            },
+            {
+                question: "What is the main purpose of a database management system (DBMS)?",
+                options: ["To create beautiful websites", "To manage computer hardware", "To manage databases", "To control computer viruses"],
+                correctAnswer: "To manage databases"
+            },
+            {
+                question: "Which social media platform is known for its 140-character limit posts?",
+                options: ["Facebook", "Twitter", "Instagram", "LinkedIn"],
+                correctAnswer: "Twitter"
+            },
+            {
+                question: "What does IP address stand for?",
+                options: ["Internet Protocol Address", "Intranet Protocol Address", "Interconnection Protocol Address", "Internet Personal Address"],
+                correctAnswer: "Internet Protocol Address"
+            },
+            {
+                question: "What is AI?",
+                options: ["Artificial Invention", "Artificial Intelligence", "Automated Interaction", "All Interactions"],
+                correctAnswer: "Artificial Intelligence"
+            },
+            {
+                question: "Which programming language is commonly used in AI development?",
+                options: ["JavaScript", "Python", "Java", "C#"],
+                correctAnswer: "Python"
+            },
+            {
+                question: "What does the acronym 'ML' stand for in the context of AI?",
+                options: ["Machine Learning", "Major League", "Memory Leak", "Main Loop"],
+                correctAnswer: "Machine Learning"
+            },
+            {
+                question: "Which AI technique is used to train machines to learn from data?",
+                options: ["Artificial Neural Networks", "Random Forest", "Support Vector Machines", "Linear Regression"],
+                correctAnswer: "Artificial Neural Networks"
+            },
+            {
+                question: "What is the primary goal of Natural Language Processing (NLP)?",
+                options: ["Speech recognition", "Text-to-speech conversion", "Language translation", "Understanding and processing human language"],
+                correctAnswer: "Understanding and processing human language"
+            },
+            {
+                question: "Which AI application is used to make recommendations on products or content based on user behavior?",
+                options: ["Chatbots", "Reinforcement Learning", "Recommendation Systems", "Image Recognition"],
+                correctAnswer: "Recommendation Systems"
+            },
+            {
+                question: "In AI, what does 'Deep Learning' refer to?",
+                options: ["Learning about deep topics", "Training models with large datasets", "Neural networks with multiple layers", "Learning from shallow data"],
+                correctAnswer: "Neural networks with multiple layers"
+            },
+            {
+                question: "Which AI technique aims to mimic human decision-making processes?",
+                options: ["Expert Systems", "Genetic Algorithms", "Fuzzy Logic", "Bayesian Networks"],
+                correctAnswer: "Expert Systems"
+            },
+            {
+                question: "What is the Turing Test used for?",
+                options: ["Testing software performance", "Evaluating AI's ability to exhibit human-like intelligence", "Evaluating hardware efficiency", "Testing network security"],
+                correctAnswer: "Evaluating AI's ability to exhibit human-like intelligence"
+            },
+            {
+                question: "What is the field of AI that focuses on teaching machines to improve their performance through experience?",
+                options: ["Supervised Learning", "Unsupervised Learning", "Reinforcement Learning", "Semi-supervised Learning"],
+                correctAnswer: "Reinforcement Learning"
+            },
+            {
+                question: "Which AI application is used for understanding and processing visual information?",
+                options: ["Natural Language Processing", "Speech Recognition", "Computer Vision", "Machine Translation"],
+                correctAnswer: "Computer Vision"
+            },
+            {
+                question: "What is the term for the process of converting speech into text?",
+                options: ["Speech Recognition", "Text Encoding", "Voice Synthesis", "Audio Conversion"],
+                correctAnswer: "Speech Recognition"
+            },
+            {
+                question: "In AI, what does 'AGI' stand for?",
+                options: ["Artificial General Intelligence", "Advanced Graphics Interface", "Automated Group Interaction", "Artificial Global Integration"],
+                correctAnswer: "Artificial General Intelligence"
+            },
+            {
+                question: "Which AI application simulates a conversation with a human user?",
+                options: ["Chatbots", "Reinforcement Learning", "Recommendation Systems", "Genetic Algorithms"],
+                correctAnswer: "Chatbots"
+            },
+            {
+                question: "What is the term for teaching a machine to perform a task without explicit programming?",
+                options: ["Machine Learning", "Deep Learning", "Unsupervised Learning", "Self-learning"],
+                correctAnswer: "Machine Learning"
+            },
+            {
+                question: "What does CPU stand for?",
+                options: ["Central Processing Unit", "Computer Personal Unit", "Central Process Unit", "Central Processor Unit"],
+                correctAnswer: "Central Processing Unit"
+            },
+            {
+                question: "Which programming language is often used for web development?",
+                options: ["Java", "Python", "HTML", "C++"],
+                correctAnswer: "HTML"
+            },
+            {
+                question: "What is the purpose of CSS in web development?",
+                options: ["To store data", "To create web pages", "To define the structure of a webpage", "To style web pages"],
+                correctAnswer: "To style web pages"
+            },
+        
+];
+
+let currentQuestion = 0;
+let score = 0;
+
+const questionElement = document.getElementById('question');
+const optionsElement = document.getElementById('options');
+const scoreElement = document.getElementById('score');
+const nextButton = document.getElementById('next-button');
+
+function loadQuestion() {
+    const currentQuiz = quizData[currentQuestion];
+    questionElement.textContent = currentQuiz.question;
+    optionsElement.innerHTML = '';
+
+    currentQuiz.options.forEach((option, index) => {
+        const optionButton = document.createElement('button');
+        optionButton.textContent = option;
+        optionButton.addEventListener('click', () => checkAnswer(option, currentQuiz.correctAnswer));
+        optionsElement.appendChild(optionButton);
+    });
+}
+
+function checkAnswer(selectedOption, correctOption) {
+    if (selectedOption === correctOption) {
+        score++;
+    }
+
+    currentQuestion++;
+
+    if (currentQuestion < quizData.length) {
+        loadQuestion();
+    } else {
+        endQuiz();
+    }
+}
+
+function endQuiz() {
+    questionElement.textContent = "Quiz Completed!";
+    optionsElement.innerHTML = '';
+    nextButton.style.display = 'none';
+    scoreElement.textContent = `Your Score: ${score} out of ${quizData.length}`;
+}
+
+loadQuestion();
+nextButton.addEventListener('click', () => loadQuestion());
+        </script>
+    </body>
+    </html>
+    

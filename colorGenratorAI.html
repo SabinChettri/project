@@ -1,0 +1,61 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>RandomColorGenerator</title>
+</head>
+<style>
+    body{
+        background-color: #121212;
+    }
+    #paper
+{
+    height: 200px;
+    width: 200px;
+    background:brown;
+    margin-top: 1%;
+    margin-left: 40%;
+    border-radius: 10px;
+    padding: 20px;
+
+}
+ button
+ {
+    margin-left: 40%;
+    border-radius: 20px;
+    width: 15rem;
+    height: 40px;
+    color: white;
+    font-size: 25px;
+    background: linear-gradient(yellow,red,yellow,brown,red);
+    -webkit-background-clip: text;
+     color: transparent;
+     background-clip: text;
+     border-color: white
+ }   
+</style>
+<body id="body">
+    <h1 style="text-align: center;  background: linear-gradient(blue,brown,green,brown);
+    -webkit-background-clip: text;
+     color: transparent;
+     background-clip: text;">random color Generate</h1>
+    <div id="paper"></div>
+    <button id="button" onclick="Generate()">Generate</button>
+</body>
+<script>
+    let body=document.getElementById("body");
+    let rc=document.getElementById("paper");
+   let button=document.getElementById("button");
+let Generate=()=>
+{
+    let colorRand='#'+ Math.floor(Math.random()*16777215).toString(16);  
+     rc.style.backgroundColor=colorRand;
+     let colorRandbody='#'+ Math.floor(Math.random()*16777215).toString(16); 
+       body.style.backgroundColor=colorRandbody;
+}
+button.addEventListener("click",Generate());
+
+    </script>
+</html>
