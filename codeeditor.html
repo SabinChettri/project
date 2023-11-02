@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width" initial-scale="1.0">
+    <title>Document</title>
+    
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/brands.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/fontawesome.min.css">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/regular.min.css">
+    <style>
+        #togle {
+            background-color: black;
+            width: 60px;
+            height: 40px;
+            border-radius: 30px;
+            text-align: right;
+            float: right;
+            margin-right: 40px;
+        }
+
+        #togle #toge {
+            background-color: black;
+            height: 40px;
+            width: 90px;
+            border-radius: 20px;
+            border-color: cyan;
+        }
+
+        #html {
+            margin-top: 0px;
+            color: white;
+            padding: 10px;
+            height: 170px;
+            width: 623px;
+            background-color: darkslategrey;
+        }
+
+        #css {
+            color: white;
+            padding: 10px;
+            height: 170px;
+            width: 623px;
+            background-color: darkslategrey;
+
+        }
+
+        #jss {
+            color: white;
+            padding: 10px;
+            height: 170px;
+            width: 620px;
+            background-color: darkslategrey;
+
+        }
+
+        #output {
+            margin-top: -98vh;
+            padding: 10px;
+            height: 550px;
+            width: 500px;
+            background-color:darkolivegreen;
+            text-align: left;
+            float: right;
+            color: white;
+        }
+    </style>
+</head>
+
+<body>
+    <div class="first">
+        <label style="background-color: green; color: white; margin-left: -0.5rem; font-size: 40px;"><i class="fa-brands fa-html5"></i></label>
+        <textarea  id="html" onkeyup="result()"></textarea>
+    </div>
+    <div class="second">
+        <label style="background-color: green; color: white; margin-left: -0.5rem; font-size: 40px;"><i class="fa-brands fa-css3-alt"></i></label>
+        <textarea id="css" onkeyup="result()"> </textarea>
+    </div>
+    <div class="third">
+        <label style="background-color: green; color: white; margin-left: -0.5rem; font-size: 40px;"><i class="fa-brands fa-js"></i></label>
+        <textarea id="jss" onkeyup="result()"></textarea>
+    </div>
+   
+    <div>
+       
+        <iframe  id="output"></iframe>
+
+    </div>
+</body>
+<script>
+    function result()
+    {
+        const htmlCode= document.getElementById('html').value;
+         const cssCode= document.getElementById('css').value;
+        const jsCode= document.getElementById('jss').value;
+        const output= document.getElementById('output');
+
+
+        output.contentDocument.body.innerHTML=htmlCode + "<style>" + cssCode + "</style>";
+        output.contentWindow.eval(jsCode);
+
+    }
+</script>
+
+</html>
